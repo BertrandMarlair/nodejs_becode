@@ -25,7 +25,11 @@ To run it locally for testing and/or improve the codebase, enter the following c
 
 1. **Clone** the repository and navigate into it.
 2. You will need some external files in your repository:
-	1. The file `server/.env` that you will create. it contain this following resources -> PORT=5000
+	1. The file `server/.env` that you will create. it contain this following resources ->
+	````
+	HOST_PORT=5000
+	HOST_URL=http://localhost
+	````	
 3. `npm install` (install project's dependencies)
 4. `npm run install:all` (install all child project's dependencies)
 5. `npm run start:build` (build and start all project's)
