@@ -1,0 +1,26 @@
+{
+  "name": "nodejs_becode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./bin/index.js",
+  "scripts": {
+    "start": "node .",
+    "work": "npx babel src -s --watch --verbose --out-dir bin",
+    "build": "npx babel src --out-dir bin"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
+    "@babel/preset-env": "^7.5.5",
+    "babel-eslint": "^10.0.2",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
+    "eslint": "^6.7.1"
+  }
+}

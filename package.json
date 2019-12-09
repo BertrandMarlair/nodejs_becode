@@ -1,0 +1,23 @@
+{
+  "name": "todo_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently 'cd ./server && \"$npm_execpath\" run work' 'docker-compose up'",
+    "stop": "docker-compose down",
+    "stop:force": "docker stop $(docker ps -a -q) docker rm $(docker ps -a -q)",
+    "start:build": "concurrently 'cd ./server && \"$npm_execpath\" run work' 'docker-compose up --build'",
+    "install:all": "concurrently 'cd ./server && \"$npm_execpath\" install'"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.3",
+    "concurrently": "^5.0.0",
+    "eslint": "^6.6.0",
+    "prettier": "^1.19.1"
+  },
+  "author": "",
+  "license": "ISC"
+}

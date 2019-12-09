@@ -1,0 +1,15 @@
+*~
+._*
+.DS_Store
+
+# package directories
+node_modules
+server/node_modules
+
+# build targets
+pgdata
+server/.env
+server/bin
+
+# project dev files
+.env

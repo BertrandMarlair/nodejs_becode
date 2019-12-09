@@ -1,0 +1,35 @@
+version: '3.7'
+services:
+    node: 
+        build:
+            context: ./server
+            dockerfile: ./image/Dockerfile
+        working_dir: /src/app
+        volumes:
+            - ./server/package.json:/src/app/package.json
+            - ./server/bin:/src/app/bin
+        expose:
+            - "5000"
+        ports:
+            - "5000:5000"
+        depends_on:
+            - postgres
+        env_file:
+            - ./server/.env
+        command: "nodemon --inspect=0.0.0.0:8080 --watch bin"
+        networks:
+            - webnet
+    postgres:
+        image: postgres
+        volumes: 
+            - ./pgdata:/var/lib/postgresql/data
+        networks:
+            - webnet
+        ports: 
+            - "5001:5432"
+        env_file:
+            - ./.env
+        networks:
+            - webnet
+networks: 
+    webnet: 
