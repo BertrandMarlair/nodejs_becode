@@ -13,23 +13,13 @@ services:
         ports:
             - "5000:5000"
         depends_on:
-            - postgres
+            - mongo
         env_file:
             - ./server/.env
         command: "nodemon --inspect=0.0.0.0:8080 --watch bin"
-        networks:
-            - webnet
-    postgres:
-        image: postgres
-        volumes: 
-            - ./pgdata:/var/lib/postgresql/data
-        networks:
-            - webnet
-        ports: 
-            - "5001:5432"
-        env_file:
-            - ./.env
-        networks:
-            - webnet
-networks: 
-    webnet: 
+    mongo:
+        image: mongo
+        volumes:
+            - ./db:/data/db
+        ports:
+            - "27017:27017"

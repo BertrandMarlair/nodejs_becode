@@ -7,7 +7,7 @@ node_modules
 server/node_modules
 
 # build targets
-pgdata
+db
 server/.env
 server/bin
 
