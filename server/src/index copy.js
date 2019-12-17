@@ -6,16 +6,23 @@ import {HOST_PORT, HOST_URL} from "./core/constant";
 
 const app = express();
 const httpServer = http.createServer(app);
+
 const spinner = ora();
 
-spinner.start();
+app.get("/", (req, res) => {
+    res.send("running node api");
+});
 
 httpServer.listen(HOST_PORT, () => {
     spinner.succeed();
-    console.log(`${chalk.green(" Started -> ")} on ${HOST_URL}:${HOST_PORT}`);
+    console.log(
+        chalk.green("✓"),
+        `Server ready. -> start on ${HOST_URL}:${HOST_PORT}/`,
+    );
 });
 
 httpServer.on("error", error => {
     spinner.fail();
-    console.log(`💣 ${error}`);
+    console.log(error);
+    console.log("💣", chalk.red("error:"), error.message);
 });
