@@ -1,4 +1,4 @@
-import getUsers from "../controller/test";
+import getUsers from "../controller/getUsers";
 
 const routes = [
     {path: "/", controller: getUsers},
