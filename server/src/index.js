@@ -3,14 +3,17 @@ import http from "http";
 import ora from "ora";
 import chalk from "chalk";
 import {HOST_PORT, HOST_URL} from "./core/constant";
+import routes from "./core/routes";
 
 const app = express();
 const httpServer = http.createServer(app);
 
 const spinner = ora();
 
-app.get("/", (req, res) => {
-    res.send("running node api");
+routes.forEach(route => {
+    app.get(route.path, (req, res) => {
+        res.send(route.controller(req, res));
+    });
 });
 
 httpServer.listen(HOST_PORT, () => {
