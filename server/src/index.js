@@ -4,6 +4,7 @@ import ora from "ora";
 import chalk from "chalk";
 import {HOST_PORT, HOST_URL} from "./core/constant";
 import routes from "./core/routes";
+import mongo from "./core/mongo";
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -12,16 +13,28 @@ const spinner = ora();
 
 routes.forEach(route => {
     app.get(route.path, (req, res) => {
-        res.send(route.controller(req, res));
+        route.controller(req, res);
     });
 });
 
-httpServer.listen(HOST_PORT, () => {
+httpServer.listen(HOST_PORT, async () => {
     spinner.succeed();
-    console.log(
-        chalk.green("✓"),
-        `Server ready. -> start on ${HOST_URL}:${HOST_PORT}/`,
-    );
+    const db = await mongo();
+
+    if (db) {
+        console.log(
+            chalk.green("✓"),
+            `Server and database ready. -> start on ${HOST_URL}:${HOST_PORT}/`,
+        );
+    } else {
+        console.log(
+            console.log(
+                "💣",
+                chalk.red("error:"),
+                "failed to connect to the database",
+            ),
+        );
+    }
 });
 
 httpServer.on("error", error => {
