@@ -1,12 +1,12 @@
 import faker from "faker";
 
 const getUsers = (req, res) => {
-    console.log(req, res);
-    const randomName = faker.name.findName();
-    const randomEmail = faker.internet.email();
-    const jobType = faker.name.jobType();
-
-    return new Array(100).fill({randomName, randomEmail, jobType});
+    console.log(req);
+    return new Array(200).fill({
+        name: faker.name.findName(),
+        email: faker.internet.email(),
+        jobType: faker.name.jobType(),
+    });
 };
 
 export default getUsers;
